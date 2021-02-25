@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Cadastrar Campus</title>
+        <h:outputStylesheet name="bootstrap-4.1/css/bootstrap.min.css"/>
+        <h:outputScript name="jquery/jquery-3.3.1.slim.min.js"/>
+        <h:outputScript name="jquery/jquery.min.js"/>
+        <h:outputScript name="bootstrap-4.1/js/popper.min.js" />
+        <h:outputScript name="bootstrap-4.1/js/bootstrap.min.js"/>
+    </h:head>
+    <h:body>
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadowsm">
+            <h5 class="my-0 mr-md-auto font-weight-normal">
+                <h:graphicImage library="imagens" width="10%" height="10%" name="marcaifms.png" alt="logotipo do IFMS"/>
+                <a href="" target="blank" type="button" class="btn btn-link">
+                    IFMS/Corumbá - Tecnologia em Análise e Desenvolvimento de Sistemas
+                </a>
+            </h5>
+            <ul class="nav">
+                <li class="nav-item">
+                    <h:link class="nav-link active" value="Principal" outcome="/index.xhtml" />
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" ariahaspopup="true" aria-expanded="false">Campus</a>
+                    <div class="dropdown-menu">
+                        <h:link class="dropdownitem" value="Cadastrar Campus" outcome="/view/campus/inserirCampus.xhtml" />
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" id="nomeUsuario" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary" id="linkDeslogar" href="">Deslogar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary" id="linkLogar" href="">Logar</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <h1>Cadastrar Campus</h1>
+            <h:form class="novo">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="campusNome">Nome do Campus</label>
+                        <h:inputText class="form-control" id="nomeCampus" value="#{campusController.campusNome}"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="idEstadoCampus">Estado</label>
+                        <h:selectOneMenu class="form-control" id="idEstadoCampus" value="#{campusController.campusEstadoId}">
+                            <f:selectItems value="#{campusController.estados}" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="idCidadeCampus">Cidade</label>
+                        <h:selectOneMenu class="form-control" id="idCidadeCampus" value="#{campusController.campusCidadeId}">
+                            <f:selectItems value="#{campusController.cidades}" />
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+
+                <h:commandButton class="btn btn-primary" value="salvar" action="#{campusController.salvar()}"/>
+            </h:form>
+        </div>
+    </h:body>
+</html>
