@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="corpo">
+        <div class="container">
+            <h1>Associar Campus e Servidor</h1>
+            <h:form class="novo">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="idCampus">Campus</label>
+                        <h:selectOneMenu class="formcontrol" id="idCampus" value="#{campusController.campusModel.idCampus}">
+                            <f:selectItems value="#{campusController.campi}" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="idPessoa">Servidores</label>
+                        <h:selectOneMenu class="formcontrol" id="idPessoa" value="#{servidorController.servidorModel.idPessoa}">
+                            <f:selectItems value="#{servidorController.servidores}" />
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <h:commandButton class="btn btnprimary" value="vincular" action="#{campusController.vincularCampusServidor(servidorController.servidorModel)}"/>
+            </h:form>
+            <hr/>
+            <div class="field">
+                <table data-page-length='5' class="table table-bordered tablestriped" onload="#{campusController.buscarTodosCampusComServidores()}">
+                    <thead>
+                        <tr>
+                            <th scope="col">Campus</th>
+                            <th scope="col">Servidor</th>
+                            <th scope="col">Cargo</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{campusController.listaDeCampus}" var="campus">
+                            <tr>
+                                <td colspan="4">#{campus.campusNome}</td>
+                            </tr>
+                            <ui:repeat value="#{campus.servidores}" var="servidor">
+                                <tr>
+                                    <td>#</td>
+                                    <td>#{servidor.pessoaNome}</td>
+                                    <td>#{servidor.cargo}</td>
+                                    <td>
+                                        <h:form>
+                                            <h:commandButton class="btn btnsecondary" value="Desvincular" onclick="return confirm('Deseja realmente desvincular?')" action= "#{campusController.desvincularServidor(campus, servidor)}"/>
+                                        </h:form>
+                                    </td>
+                                </tr>
+                            </ui:repeat>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

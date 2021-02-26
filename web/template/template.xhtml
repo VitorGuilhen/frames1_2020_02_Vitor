@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+    transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Frames 1 - Principal</title>
+        <h:outputStylesheet name="bootstrap-4.1/css/bootstrap.min.css"/>
+        <h:outputScript name="jquery/jquery-3.3.1.slim.min.js"/>
+        <h:outputScript name="jquery/jquery.min.js"/>
+        <h:outputScript name="bootstrap-4.1/js/popper.min.js" />
+        <h:outputScript name="bootstrap-4.1/js/bootstrap.min.js"/>
+    </h:head>
+    <h:body>
+        <ui:insert name="cabecalhoMenu">
+            <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bgwhite border-bottom shadow-sm">
+                <h5 class="my-0 mr-md-auto font-weight-normal">
+                    <h:graphicImage library="imagens" width="10%" height="10%" name="marcaifms.png" alt="
+                                    logotipo do IFMS" />
+                    <a href="" target="blank" type="button" class="btn btn-link">
+                        IFMS/Corumbá - Tecnologia em Análise e Desenvolvimento de Sistemas
+                    </a>
+                </h5>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <h:link class="nav-link active" value="Principal" outcome="/index.xhtml" />
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" datatoggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Campus</a>
+                        <div class="dropdown-menu">
+                            <h:link class="dropdownitem" value="Cadastrar Campus" outcome="/view/campus/inserirCampus.xhtml" />
+                            <h:link class="dropdownitem" value="Buscar Campus" outcome="/view/campus/buscarCampus.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" id="nomeUsuario" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" id="linkDeslogar" href="">Deslogar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" id="linkLogar" href="">Logar</a>
+                    </li>
+                </ul>
+            </div>
+        </ui:insert>
+        <ui:insert name="corpo">
+        </ui:insert>
+    </h:body>
+</html>

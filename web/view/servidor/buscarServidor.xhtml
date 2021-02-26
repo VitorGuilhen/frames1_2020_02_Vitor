@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="corpo">
+        <div class="container">
+            <h1>Buscar Servidor</h1>
+            <hr/>
+            <div class="field">
+                <table data-page-length='5' class="table table-bordered tablestriped" onload="#{servidorController.buscarTodosServidores()}">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Cargo</th>
+                            <th scope="col">Data Ingresso</th>
+                            <th scope="col">#</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{servidorController.listaDeServidor}" var="servidor">
+                            <tr>
+                                <td>#{servidor.idPessoa}</td>
+                                <td>#{servidor.pessoaNome}</td>
+                                <td>#{servidor.cargo}</td>
+                                <td><h:outputText value="#{servidor.dataIngresso}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </h:outputText></td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btnsecondary" value="Alterar" onclick="return confirm('Deseja realmente alterar o registro?')" action= "#{servidorController.editar(servidor.idPessoa)}"/>
+                                    </h:form>
+                                </td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btndanger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{servidorController.remover(servidor.idPessoa)}"/>
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
