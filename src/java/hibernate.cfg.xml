@@ -54,5 +54,6 @@ Contributor(s):
     <mapping class="edu.eventos.ifms.model.pessoaInternaModel"/>
     <mapping class="edu.eventos.ifms.model.pessoaModel"/>
     <mapping class="edu.eventos.ifms.model.servidorModel"/>
+    <mapping class="edu.eventos.ifms.model.cursoModel"/>
   </session-factory>
 </hibernate-configuration>

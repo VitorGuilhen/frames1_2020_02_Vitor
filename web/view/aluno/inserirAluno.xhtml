@@ -9,47 +9,49 @@
                 xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <ui:define name="corpo">
         <div class="container">
-            <h1>Cadastrar Servidor</h1>
+            <h1>Cadastrar Aluno</h1>
             <h:form class="novo">
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="nomeServidor">Nome do Servidor</label>
-                        <h:inputText class="form-control" id="nomeServidor" value="#{servidorController.servidorModel.pessoaNome}"/>
+                        <label for="nomeAluno">Nome do Aluno</label>
+                        <h:inputText class="form-control" id="nomeServidor" value="#{alunoController.alunoModel.pessoaNome}"/>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="cpf">CPF</label>
-                        <h:inputText class="form-control" id="cpf" value="#{servidorController.servidorModel.CPF}"/>
+                        <h:inputText class="form-control" id="cpf" value="#{alunoController.alunoModel.CPF}"/>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="telefone">Telefone</label>
-                        <h:inputText class="form-control" id="telefone" value="#{servidorController.servidorModel.telefone}"/>
+                        <h:inputText class="form-control" id="telefone" value="#{alunoController.alunoModel.telefone}"/>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dataIngresso">Data Ingresso</label>
-                        <h:inputText p:type="date" class="formc-ontrol" id="dataIngresso" value="#{servidorController.servidorModel.dataIngresso}">
+                        <h:inputText p:type="date" class="formc-ontrol" id="dataIngresso" value="#{alunoController.alunoModel.dataIngresso}">
                             <f:convertDateTime dateStyle="short" pattern="yyyy-MM-dd"/>
                         </h:inputText>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="idArea">Área</label>
-                        <h:selectOneMenu class="form-control" id="idArea" value="#{servidorController.servidorModel.area.idArea}">
-                            <f:selectItems value="#{servidorController.areas}" />
+                        <label for="idCampus">Campus</label>
+                        <h:selectOneMenu class="form-control" id="idCampus" value="#{alunoController.alunoModel.campus.idCampus}">
+                            <f:selectItems value="#{alunoController.campus}" />
                         </h:selectOneMenu>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="siape">SIAPE</label>
-                        <h:inputText class="form-control" id="siape" value="#{servidorController.servidorModel.SIAPE}"/>
+                        <label for="ra">RA</label>
+                        <h:inputText class="form-control" id="ra" value="#{alunoController.alunoModel.RA}"/>
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="cargo">Cargo</label>
-                        <h:inputText class="form-control" id="cargo" value="#{servidorController.servidorModel.cargo}"/>
+                    <div class="form-group col-md-6">
+                        <label for="idCurso">Curso</label>
+                        <h:selectOneMenu class="form-control" id="idCurso" value="#{alunoController.alunoModel.curso.idCurso}">
+                            <f:selectItems value="#{alunoController.curso}" />
+                        </h:selectOneMenu>
                     </div>
                 </div>
-                <h:commandButton class="btn btn-primary" value="salvar" action="#{servidorController.salvar()}"/>
+                <h:commandButton class="btn btn-primary" value="salvar" action="#{alunoController.salvar()}"/>
             </h:form>
         </div>
     </ui:define>

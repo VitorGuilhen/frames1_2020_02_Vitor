@@ -25,4 +25,14 @@ public class areaRepository {
         this.session.close();
         return listaDeAreas;
     }
+    
+    public void salvar(areaModel area) {
+        this.session = hibernateConector.getSessionFactory().openSession();
+        this.transaction = session.beginTransaction();
+
+        this.session.saveOrUpdate(area);
+
+        this.transaction.commit();
+        this.session.close();
+    }
 }

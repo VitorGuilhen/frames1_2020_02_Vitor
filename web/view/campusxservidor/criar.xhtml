@@ -15,18 +15,18 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="idCampus">Campus</label>
-                        <h:selectOneMenu class="formcontrol" id="idCampus" value="#{campusController.campusModel.idCampus}">
+                        <h:selectOneMenu class="form-control" id="idCampus" value="#{campusController.campusModel.idCampus}">
                             <f:selectItems value="#{campusController.campi}" />
                         </h:selectOneMenu>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="idPessoa">Servidores</label>
-                        <h:selectOneMenu class="formcontrol" id="idPessoa" value="#{servidorController.servidorModel.idPessoa}">
+                        <h:selectOneMenu class="form-control" id="idPessoa" value="#{servidorController.servidorModel.idPessoa}">
                             <f:selectItems value="#{servidorController.servidores}" />
                         </h:selectOneMenu>
                     </div>
                 </div>
-                <h:commandButton class="btn btnprimary" value="vincular" action="#{campusController.vincularCampusServidor(servidorController.servidorModel)}"/>
+                <h:commandButton class="btn btn-primary" value="vincular" action="#{campusController.vincularCampusServidor(servidorController.servidorModel)}"/>
             </h:form>
             <hr/>
             <div class="field">
@@ -51,7 +51,7 @@
                                     <td>#{servidor.cargo}</td>
                                     <td>
                                         <h:form>
-                                            <h:commandButton class="btn btnsecondary" value="Desvincular" onclick="return confirm('Deseja realmente desvincular?')" action= "#{campusController.desvincularServidor(campus, servidor)}"/>
+                                            <h:commandButton class="btn btn-secondary" value="Desvincular" onclick="return confirm('Deseja realmente desvincular?')" action= "#{campusController.desvincularServidor(campus, servidor)}"/>
                                         </h:form>
                                     </td>
                                 </tr>

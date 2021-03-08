@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="corpo">
+        <div class="container">
+            <h1>Cadastrar Area</h1>
+            <h:form class="novo">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="nomeCampus">Nome da Area</label>                
+                        <h:inputText class="form-control" id="areaNome" value="#{areaController.areaModel.areaNome}"/>
+                    </div>
+                </div>
+                <h:commandButton class="btn btn-primary" value="salvar" action="#{areaController.salvar()}"/>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

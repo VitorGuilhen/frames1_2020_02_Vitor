@@ -16,8 +16,7 @@
         <ui:insert name="cabecalhoMenu">
             <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bgwhite border-bottom shadow-sm">
                 <h5 class="my-0 mr-md-auto font-weight-normal">
-                    <h:graphicImage library="imagens" width="10%" height="10%" name="marcaifms.png" alt="
-                                    logotipo do IFMS" />
+                    <h:graphicImage library="imagens" width="10%" height="10%" name="marcaifms.png" alt="logotipo do IFMS" />
                     <a href="" target="blank" type="button" class="btn btn-link">
                         IFMS/Corumbá - Tecnologia em Análise e Desenvolvimento de Sistemas
                     </a>
@@ -27,10 +26,34 @@
                         <h:link class="nav-link active" value="Principal" outcome="/index.xhtml" />
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" datatoggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Campus</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">CRUDs</a>
                         <div class="dropdown-menu">
-                            <h:link class="dropdownitem" value="Cadastrar Campus" outcome="/view/campus/inserirCampus.xhtml" />
-                            <h:link class="dropdownitem" value="Buscar Campus" outcome="/view/campus/buscarCampus.xhtml" />
+                            <h:link class="dropdown-item" value="0 - Cadastrar Area" outcome="/view/area/inserirArea.xhtml" />
+                            <h:link class="dropdown-item" value="Buscar Area" outcome="/view/campus/buscarCampus.xhtml" />
+                            <div class="dropdown-divider"></div>
+                            <h:link class="dropdown-item" value="Cadastrar Campus" outcome="/view/campus/inserirCampus.xhtml" />
+                            <h:link class="dropdown-item" value="Buscar Campus" outcome="/view/campus/buscarCampus.xhtml" />
+                            <div class="dropdown-divider"></div>
+                            <h:link class="dropdown-item" value="Cadastrar Servidor" outcome="/view/servidor/inserirServidor.xhtml" />
+                            <h:link class="dropdown-item" value="Buscar Servidor" outcome="/view/servidor/buscarServidor.xhtml" />
+                            <div class="dropdown-divider"></div>
+                            <h:link class="dropdown-item" value="0 - Cadastrar Externo" outcome="/view/campus/inserirCampus.xhtml" />
+                            <h:link class="dropdown-item" value="Buscar Externo" outcome="/view/campus/buscarCampus.xhtml" />
+                            <div class="dropdown-divider"></div>
+                            <h:link class="dropdown-item" value="0 - Cadastrar Aluno" outcome="/view/aluno/inserirAluno.xhtml" />
+                            <h:link class="dropdown-item" value="Buscar Aluno" outcome="/view/aluno/buscarAluno.xhtml" />
+                            <div class="dropdown-divider"></div>
+                            <h:link class="dropdown-item" value="0 - Cadastrar Evento" outcome="/view/campus/inserirCampus.xhtml" />
+                            <h:link class="dropdown-item" value="Buscar Evento" outcome="/view/campus/buscarCampus.xhtml" />
+                            <div class="dropdown-divider"></div>
+                            <h:link class="dropdown-item" value="0 - Cadastrar Curso" outcome="/view/curso/inserirCurso.xhtml" />
+                            <h:link class="dropdown-item" value="Buscar Curso" outcome="/view/curso/buscarCurso.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ligações</a>
+                        <div class="dropdown-menu">
+                            <h:link class="dropdown-item" value="Campus X Servidor" outcome="/view/campusxservidor/criar.xhtml" />
                         </div>
                     </li>
                     <li class="nav-item">
@@ -39,6 +62,7 @@
                     <li class="nav-item">
                         <a class="btn btn-outline-primary" id="linkDeslogar" href="">Deslogar</a>
                     </li>
+                          
                     <li class="nav-item">
                         <a class="btn btn-outline-primary" id="linkLogar" href="">Logar</a>
                     </li>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="corpo">
+        <div class="container">
+            <f:metadata>
+                <f:viewParam value="#{campusController.campusModel.idCampus}" name="idCampus"/>
+                <f:viewAction action="#{campusController.getCampus()}" />
+            </f:metadata>
+            <h1>Editar Campus</h1>
+            <h:form>
+                <h:inputHidden id="idCampus" value="#{campusController.campusModel.idCampus}"/>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="nomeCampus">Nome do Campus</label>                
+                        <h:inputText class="form-control" id="campusNome" value="#{campusController.campusModel.campusNome}"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="idEstadoCampus">Estado</label>
+                        <h:selectOneMenu class="form-control" id="idEstadoCampus" value="#{campusController.campusModel.estado.idEstado}">  
+                            <f:ajax render="idCidadeCampus" event="change" listener="#{campusController.onChangeEstado()}" />
+                            <f:selectItems value="#{campusController.estados}" />    
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="idCidadeCampus">Cidade</label>
+                        <h:selectOneMenu class="form-control" id="idCidadeCampus" value="#{campusController.campusModel.cidade.idCidade}">  
+                            <f:selectItems value="#{campusController.listaDeCidades}" />    
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-1">
+                        <h:commandButton class="btn btn-secondary" value="voltar" action="buscarCampus.xhtml"/>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <h:commandButton class="btn btn-primary" value="salvar alterações" action="#{campusController.salvarEdicao()}"/>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

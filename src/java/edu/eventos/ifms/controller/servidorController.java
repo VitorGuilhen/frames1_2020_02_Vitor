@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.eventos.ifms.controller;
 
 import edu.eventos.ifms.model.areaModel;
@@ -18,7 +23,7 @@ public class servidorController {
     private servidorRepository servidorRepository;
     private areaRepository areaRepository;
     private List<servidorModel> listaDeServidor;
-
+    
     public servidorController() {
         this.servidorModel = new servidorModel();
         this.areaRepository = new areaRepository();
@@ -26,23 +31,23 @@ public class servidorController {
         this.listaDeServidor = new ArrayList<>();
     }
 
-    public void salvar() {
+    public void salvar(){
         this.servidorRepository.salvar(this.servidorModel);
     }
-
+    
     public String salvarEdicao() {
         this.servidorRepository.salvar(this.servidorModel);
         return "buscarServidor.xhtml?faces-redirect=true";
     }
-
+    
     public void remover(long idServidor) {
         this.servidorRepository.remover(idServidor);
     }
-
+    
     public String editar(long idServidor) {
         return "editarServidor.xhtml?faces-redirect=true&idServidor=" + idServidor;
     }
-
+    
     public void buscarServidor() {
         this.servidorModel = this.servidorRepository.buscarPorId(this.servidorModel.getIdPessoa());
     }
@@ -56,11 +61,49 @@ public class servidorController {
         return itens;
     }
 
+    public List<SelectItem> getServidores() {
+        ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
+        List<servidorModel> listaDeServidores = this.servidorRepository.buscarTodos();
+        for (servidorModel servidor : listaDeServidores) {
+            itens.add(new SelectItem(servidor.getIdPessoa(), servidor.getPessoaNome()));
+        }
+        return itens;
+    }
+    
     public void buscarTodosServidores() {
         this.listaDeServidor = this.servidorRepository.buscarTodos();
     }
-    
-    
-    
+
+    public servidorModel getServidorModel() {
+        return servidorModel;
+    }
+
+    public void setServidorModel(servidorModel servidorModel) {
+        this.servidorModel = servidorModel;
+    }
+
+    public servidorRepository getServidorRepository() {
+        return servidorRepository;
+    }
+
+    public void setServidorRepository(servidorRepository servidorRepository) {
+        this.servidorRepository = servidorRepository;
+    }
+
+    public areaRepository getAreaRepository() {
+        return areaRepository;
+    }
+
+    public void setAreaRepository(areaRepository areaRepository) {
+        this.areaRepository = areaRepository;
+    }
+
+    public List<servidorModel> getListaDeServidor() {
+        return listaDeServidor;
+    }
+
+    public void setListaDeServidor(List<servidorModel> listaDeServidor) {
+        this.listaDeServidor = listaDeServidor;
+    }
     
 }
