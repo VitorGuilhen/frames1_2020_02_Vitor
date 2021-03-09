@@ -81,7 +81,7 @@ public class areaController {
     }
 
     public void buscarTodasAreas(){
-        this.listaDeArea(this.areaRepository.buscarTodos());
+        this.setListaDeArea(this.getAreaRepository().buscarTodos());
     }
     
     
