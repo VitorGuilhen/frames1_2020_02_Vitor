@@ -37,7 +37,7 @@ public class areaController {
     }
 
     public void remover(long idArea) {
-        this.areaRepository().remover(idArea);
+        this.getAreaRepository().remover(idArea);
     }
 
     public String editar(long idArea) {
@@ -80,6 +80,9 @@ public class areaController {
         this.listaDeArea = listaDeArea;
     }
 
+    public void buscarTodasAreas(){
+        this.listaDeArea(this.areaRepository.buscarTodos());
+    }
     
     
     

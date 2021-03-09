@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="corpo">
+        <div class="container">
+            <h1>Buscar Areas</h1>
+            <hr/>
+            <div class="field">
+                <table data-page-length='5' class="table table-bordered table-striped"  onload="#{areaController.buscarTodasAreas()}">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome Area</th>
+                            <th scope="col">#</th>
+                            <th scope="col">#</th>
+                        </tr>   
+                    </thead>
+                    <tbody> 
+                        <ui:repeat value="#{areaController.listaDeAreas}" var="area">
+                            <tr>
+                                <td>#{area.idArea}</td>
+                                <td>#{area.areaNome}</td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-secondary" value="Alterar" onclick="return confirm('Deseja realmente alterar o registro?')" action= "#{areaController.editar(area.idArea)}"/>
+                                    </h:form>
+                                </td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{areaController.remover(area.idArea)}"/>
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

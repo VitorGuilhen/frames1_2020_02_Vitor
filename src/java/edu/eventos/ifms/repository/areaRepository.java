@@ -8,6 +8,7 @@ package edu.eventos.ifms.repository;
 import edu.eventos.ifms.model.areaModel;
 import edu.eventos.ifms.util.hibernateConector;
 import java.util.List;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,17 +16,6 @@ public class areaRepository {
     private Session session;
     private Transaction transaction;
 
-    public List<areaModel> buscar(){
-        this.session = hibernateConector.getSessionFactory().openSession();
-        this.transaction = session.beginTransaction();
-        
-        List<areaModel> listaDeAreas = this.session.createQuery("from areaModel").list();
-        
-        this.transaction.commit();
-        this.session.close();
-        return listaDeAreas;
-    }
-    
     public void salvar(areaModel area) {
         this.session = hibernateConector.getSessionFactory().openSession();
         this.transaction = session.beginTransaction();
@@ -34,5 +24,38 @@ public class areaRepository {
 
         this.transaction.commit();
         this.session.close();
+    }
+    
+    public void remover(long idArea) {
+        this.session = hibernateConector.getSessionFactory().openSession();
+        this.transaction = session.beginTransaction();
+
+       areaModel area = (areaModel) this.session.get(areaModel.class, idArea);
+        this.session.delete(area);
+
+        this.transaction.commit();
+
+    }
+    
+    public areaModel buscarPorId(long idArea) {
+        this.session = hibernateConector.getSessionFactory().openSession();
+        this.transaction = session.beginTransaction();
+
+        areaModel area = (areaModel) this.session.get(areaModel.class, idArea);
+        
+        this.transaction.commit();
+        this.session.close();
+        return area;
+    }
+    
+    public List<areaModel> buscarTodos() {
+        this.session = hibernateConector.getSessionFactory().openSession();
+        this.transaction = session.beginTransaction();
+
+        List<areaModel> listaDeArea = this.session.createQuery("from areaModel").list();
+
+        this.transaction.commit();
+        this.session.close();
+        return listaDeArea;
     }
 }
