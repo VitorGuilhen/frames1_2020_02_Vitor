@@ -36,6 +36,10 @@ public class cursoModel implements Serializable {
     @JoinColumn(name = "idCampus", insertable = true, updatable = true)
     private campusModel campus;
     
+    public cursoModel() {
+        this.area = new areaModel();
+        this.campus = new campusModel();
+    }
     
     public long getIdCurso() {
         return idCurso;
