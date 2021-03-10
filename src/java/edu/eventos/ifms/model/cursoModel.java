@@ -2,6 +2,7 @@ package edu.eventos.ifms.model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,9 +34,9 @@ public class cursoModel implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "idCampus", insertable = true, updatable = true)
-    private campusModel campusAoQualPertence;
+    private campusModel campus;
     
-
+    
     public long getIdCurso() {
         return idCurso;
     }
@@ -68,12 +69,12 @@ public class cursoModel implements Serializable {
         this.area = area;
     }
 
-    public campusModel getCampusAoQualPertence() {
-        return campusAoQualPertence;
+    public campusModel getCampus() {
+        return campus;
     }
 
-    public void setCampusAoQualPertence(campusModel campusAoQualPertence) {
-        this.campusAoQualPertence = campusAoQualPertence;
+    public void setCampus(campusModel campus) {
+        this.campus = campus;
     }
 
     

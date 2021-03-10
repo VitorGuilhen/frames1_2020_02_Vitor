@@ -1,8 +1,10 @@
 package edu.eventos.ifms.controller;
 
+import edu.eventos.ifms.model.areaModel;
 import edu.eventos.ifms.model.campusModel;
 import edu.eventos.ifms.model.cursoModel;
 import edu.eventos.ifms.model.servidorModel;
+import edu.eventos.ifms.repository.areaRepository;
 import edu.eventos.ifms.repository.campusRepository;
 import edu.eventos.ifms.repository.cursoRepository;
 import edu.eventos.ifms.repository.servidorRepository;
@@ -22,10 +24,12 @@ public class cursoController {
     private campusRepository campusRepository;
     private servidorRepository servidorRepository;
     private List<cursoModel> listaDeCursos;
+    private areaRepository areaRepository;
 
     public cursoController() {
         this.cursoModel = new cursoModel();
         this.campusModel = new campusModel();
+        this.areaRepository = new areaRepository();
         this.cursoRepository = new cursoRepository();
         this.campusRepository = new campusRepository();
         this.listaDeCursos = new ArrayList<>();
@@ -33,11 +37,29 @@ public class cursoController {
     }
 
     public void salvar() {
-        this.getCursoRepository().salvar(this.getCursoModel());
+        this.getCursoRepository().salvar(getCursoModel());
+    }
+    
+    public List<SelectItem> getAreas() {
+        ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
+        List<areaModel> listaDeAreas = this.areaRepository.buscarTodos();
+        for (areaModel area : listaDeAreas) {
+            itens.add(new SelectItem(area.getIdArea(), area.getAreaNome()));
+        }
+        return itens;
+    }
+    
+    public List<SelectItem> getCampus() {
+        ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
+        List<campusModel> listaDeCampus = this.campusRepository.buscarTodos();
+        for (campusModel campus : listaDeCampus) {
+            itens.add(new SelectItem(campus.getIdCampus(), campus.getCampusNome()));
+        }
+        return itens;
     }
 
     public String salvarEdicao() {
-        this.getCursoRepository().salvar(this.getCursoModel());
+        this.getCursoRepository().salvar(getCursoModel());
         return "buscarCurso.xhtml?faces-redirect=true";
     }
 
@@ -47,65 +69,6 @@ public class cursoController {
 
     public String editar(long idCurso) {
         return "editarCurso.xhtml?faces-redirect=true&idCurso=" + idCurso;
-    }
-
-    public void getCurso() {
-        this.setCursoModel(this.getCursoRepository().buscarPorId(this.getCursoModel().getIdCurso()));
-    }
-
-    public List<SelectItem> getCampi() {
-        ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
-        this.setListaDeCampus(this.getCampusRepository().buscarTodos());
-        for (campusModel campus : getListaDeCampus()) {
-            itens.add(new SelectItem(campus.getIdCampus(), campus.getCampusNome()));
-        }
-        return itens;
-    }
-
-    public void buscarTodosCampus() {
-        this.setListaDeCampus(this.getCampusRepository().buscarTodos());
-    }
-
-    public void buscarTodosCampusComServidores() {
-        List<campusModel> listaDeCampusTemp = new ArrayList<>();
-        listaDeCampusTemp.addAll(this.getListaDeCampus());
-        this.getListaDeCampus().clear();
-        for (campusModel campus : listaDeCampusTemp) {
-            campus = this.getCampusRepository().buscarPorId(campus.getIdCampus());
-            if (!campus.getServidores().isEmpty()) {
-                this.getListaDeCampus().add(campus);
-            }
-        }
-    }
-
-    public void desvincularServidor(campusModel campus, servidorModel servidor) {
-        campus.getServidores().remove(servidor);
-        this.getCampusRepository().salvar(campus);
-    }
-
-    public void vincularCampusServidor(servidorModel servidor) {
-        this.setCampusModel(this.getCampusRepository().buscarPorId(getCampusModel().getIdCampus()));
-        List<servidorModel> listaDeServidores = new ArrayList<>();
-        if (!campusModel.getServidores().isEmpty()) {
-            servidor = (servidorModel) getServidorRepository().buscarPorId(servidor.getIdPessoa());
-            listaDeServidores = getCampusModel().getServidores();
-            listaDeServidores.add(servidor);
-            getCampusModel().setServidores(listaDeServidores);
-        } else {
-            servidor = getServidorRepository().buscarPorId(servidor.getIdPessoa());
-            listaDeServidores.add(servidor);
-            getCampusModel().setServidores(listaDeServidores);
-        }
-        this.getCampusRepository().salvar(getCampusModel());
-    }
-
-    public List<SelectItem> getCidades(long idEstado) {
-        ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
-        List<cidadeModel> listaDeCidades = this.getCidadeRepository().buscar(idEstado);
-        for (cidadeModel cidade : listaDeCidades) {
-            itens.add(new SelectItem(cidade.getIdCidade(), cidade.getCidadeNome()));
-        }
-        return itens;
     }
 
     public campusModel getCampusModel() {
@@ -124,22 +87,6 @@ public class cursoController {
         this.campusRepository = campusRepository;
     }
 
-    public estadoRepository getEstadoRepository() {
-        return estadoRepository;
-    }
-
-    public void setEstadoRepository(estadoRepository estadoRepository) {
-        this.estadoRepository = estadoRepository;
-    }
-
-    public cidadeRepository getCidadeRepository() {
-        return cidadeRepository;
-    }
-
-    public void setCidadeRepository(cidadeRepository cidadeRepository) {
-        this.cidadeRepository = cidadeRepository;
-    }
-
     public servidorRepository getServidorRepository() {
         return servidorRepository;
     }
@@ -148,20 +95,33 @@ public class cursoController {
         this.servidorRepository = servidorRepository;
     }
 
-    public List<SelectItem> getListaDeCidades() {
-        return listaDeCidades;
+    public cursoModel getCursoModel() {
+        return cursoModel;
     }
 
-    public void setListaDeCidades(List<SelectItem> listaDeCidades) {
-        this.listaDeCidades = listaDeCidades;
+    public void setCursoModel(cursoModel cursoModel) {
+        this.cursoModel = cursoModel;
     }
 
-    public List<campusModel> getListaDeCampus() {
-        return listaDeCampus;
+    public cursoRepository getCursoRepository() {
+        return cursoRepository;
     }
 
-    public void setListaDeCampus(List<campusModel> listaDeCampus) {
-        this.listaDeCampus = listaDeCampus;
+    public void setCursoRepository(cursoRepository cursoRepository) {
+        this.cursoRepository = cursoRepository;
     }
 
+    public List<cursoModel> getListaDeCursos() {
+        return listaDeCursos;
+    }
+
+    public void setListaDeCursos(List<cursoModel> listaDeCursos) {
+        this.listaDeCursos = listaDeCursos;
+    }
+
+    public void buscarTodosCursos() {
+        this.setListaDeCursos(this.getCursoRepository().buscarTodos());
+    }
+    
+    
 }

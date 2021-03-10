@@ -54,7 +54,7 @@ public class servidorController {
 
     public List<SelectItem> getAreas() {
         ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
-        List<areaModel> listaDeAreas = this.areaRepository.buscar();
+        List<areaModel> listaDeAreas = this.areaRepository.buscarTodos();
         for (areaModel area : listaDeAreas) {
             itens.add(new SelectItem(area.getIdArea(), area.getAreaNome()));
         }

@@ -13,35 +13,37 @@ and open the template in the editor.
 
     <ui:define name="corpo">
         <div class="container">
-            <h1>Buscar Campus</h1>
+            <h1>Buscar Curso</h1>
             <hr/>
             <div class="field">
-                <table data-page-length='5' class="table table-bordered table-striped"  onload="#{campusController.buscarTodosCampus()}">
+                <table data-page-length='5' class="table table-bordered table-striped"  onload="#{cursoController.buscarTodosCursos()}">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nome Campus</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Cidade</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Área</th>
+                            <th scope="col">Campus</th>
                             <th scope="col">#</th>
                             <th scope="col">#</th>
                         </tr>   
                     </thead>
                     <tbody> 
-                        <ui:repeat value="#{campusController.listaDeCampus}" var="campus">
+                        <ui:repeat value="#{cursoController.listaDeCursos}" var="curso">
                             <tr>
-                                <td>#{campus.idCampus}</td>
-                                <td>#{campus.campusNome}</td>
-                                <td>#{campus.estado.estadoNome}</td>
-                                <td>#{campus.cidade.cidadeNome}</td>
+                                <td>#{curso.idCurso}</td>
+                                <td>#{curso.cursoNome}</td>
+                                <td>#{curso.descricao}</td>
+                                <td>#{curso.area.areaNome}</td>
+                                <td>#{curso.campus.campusNome}</td>
                                 <td>
                                     <h:form>
-                                        <h:commandButton class="btn btn-secondary" value="Alterar" onclick="return confirm('Deseja realmente alterar o registro?')" action= "#{campusController.editar(campus.idCampus)}"/>
+                                        <h:commandButton class="btn btn-secondary" value="Alterar" onclick="return confirm('Deseja realmente alterar o registro?')" action= "#{cursoController.editar(curso.idCurso)}"/>
                                     </h:form>
                                 </td>
                                 <td>
                                     <h:form>
-                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{campusController.remover(campus.idCampus)}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{cursoController.remover(curso.idCurso)}"/>
                                     </h:form>
                                 </td>
                             </tr>

@@ -68,7 +68,7 @@ public class alunoController {
     
     public List<SelectItem> getCursos() {
         ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
-        List<cursoModel> listaDeCursos = this.cursoRepository.buscar();
+        List<cursoModel> listaDeCursos = this.cursoRepository.buscarTodos();
         for (cursoModel curso : listaDeCursos) {
             itens.add(new SelectItem(curso.getIdCurso(), curso.getCursoNome()));
         }
